@@ -11,6 +11,7 @@
 		A7DBB23A29B3B71400531DE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DBB23929B3B71400531DE8 /* ContentView.swift */; };
 		A7DBB23C29B3B71600531DE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7DBB23B29B3B71600531DE8 /* Assets.xcassets */; };
 		A7DBB23F29B3B71600531DE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7DBB23E29B3B71600531DE8 /* Preview Assets.xcassets */; };
+		A7DBB24629B3B74E00531DE8 /* VideoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DBB24529B3B74E00531DE8 /* VideoPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		A7DBB23929B3B71400531DE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A7DBB23B29B3B71600531DE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7DBB23E29B3B71600531DE8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A7DBB24529B3B74E00531DE8 /* VideoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreview.swift; sourceTree = "<group>"; };
+		A7DBB24729B3C68900531DE8 /* Shiny-Button-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Shiny-Button-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +54,10 @@
 		A7DBB23629B3B71400531DE8 /* Shiny Button */ = {
 			isa = PBXGroup;
 			children = (
+				A7DBB24729B3C68900531DE8 /* Shiny-Button-Info.plist */,
 				A7DBB23729B3B71400531DE8 /* Shiny_ButtonApp.swift */,
 				A7DBB23929B3B71400531DE8 /* ContentView.swift */,
+				A7DBB24529B3B74E00531DE8 /* VideoPreview.swift */,
 				A7DBB23B29B3B71600531DE8 /* Assets.xcassets */,
 				A7DBB23D29B3B71600531DE8 /* Preview Content */,
 			);
@@ -137,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7DBB24629B3B74E00531DE8 /* VideoPreview.swift in Sources */,
 				A7DBB23A29B3B71400531DE8 /* ContentView.swift in Sources */,
 				A7DBB23829B3B71400531DE8 /* Shiny_ButtonApp.swift in Sources */,
 			);
@@ -270,6 +276,8 @@
 				DEVELOPMENT_TEAM = LYG6796H6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shiny-Button-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "A shiny button";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +307,8 @@
 				DEVELOPMENT_TEAM = LYG6796H6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shiny-Button-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "A shiny button";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
