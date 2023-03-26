@@ -13,24 +13,20 @@ private class VideoPreviewViewController: UIViewController {
     private var permissionGranted = false
 
     private let captureSession = AVCaptureSession()
-    private let sessionQueue = DispatchQueue(label: "fr.valentinperignon.VideoPreview")
-
-    private var previewLayer = AVCaptureVideoPreviewLayer()
-    var screenRect: CGRect!
+    private var previewLayer: AVCaptureVideoPreviewLayer?
 
     override func viewDidLoad() {
         checkPermission()
-
         guard permissionGranted else { return }
 
         setupCaptureSession()
-        captureSession.startRunning()
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self?.captureSession.startRunning()
+        }
     }
 
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        screenRect = UIScreen.main.bounds
-        previewLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
-
+        previewLayer?.frame = view.bounds
         setPreviewOrientation()
     }
 
@@ -46,11 +42,8 @@ private class VideoPreviewViewController: UIViewController {
     }
 
     private func requestPermission() {
-        sessionQueue.suspend()
         AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
-            guard let self else { return }
-            self.permissionGranted = granted
-            self.sessionQueue.resume()
+            self?.permissionGranted = granted
         }
     }
 
@@ -63,27 +56,25 @@ private class VideoPreviewViewController: UIViewController {
 
         captureSession.addInput(videoDeviceInput)
 
-        screenRect = UIScreen.main.bounds
-
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
-        previewLayer.videoGravity = .resizeAspectFill
+        previewLayer?.frame = view.bounds
+        previewLayer?.videoGravity = .resizeAspectFill
 
         setPreviewOrientation()
 
-        view.layer.addSublayer(previewLayer)
+        view.layer.addSublayer(previewLayer!)
     }
 
     private func setPreviewOrientation() {
         switch UIDevice.current.orientation {
         case .portrait:
-            previewLayer.connection?.videoOrientation = .portrait
+            previewLayer?.connection?.videoOrientation = .portrait
         case .portraitUpsideDown:
-            previewLayer.connection?.videoOrientation = .portraitUpsideDown
+            previewLayer?.connection?.videoOrientation = .portraitUpsideDown
         case .landscapeLeft:
-            previewLayer.connection?.videoOrientation = .landscapeRight
+            previewLayer?.connection?.videoOrientation = .landscapeRight
         case .landscapeRight:
-            previewLayer.connection?.videoOrientation = .landscapeLeft
+            previewLayer?.connection?.videoOrientation = .landscapeLeft
         default:
             break
         }
@@ -95,5 +86,5 @@ struct VideoPreview: UIViewControllerRepresentable {
         return VideoPreviewViewController()
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { /* Not implemented */ }
 }

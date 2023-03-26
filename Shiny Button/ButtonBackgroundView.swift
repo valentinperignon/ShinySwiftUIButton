@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ButtonBackgroundView: View {
-    let isPressed: Bool
-    
     private var buttonPressedShapeStyle: some ShapeStyle {
         .shadow(.inner(color: .black.opacity(0.1), radius: 8, x: 0, y: 4))
         .shadow(.inner(color: .black.opacity(0.2), radius: 4, x: 0, y: 4))
@@ -30,6 +28,8 @@ struct ButtonBackgroundView: View {
         .shadow(.drop(color: .black.opacity(0.15), radius: 32, x: 0, y: 16))
         .shadow(.drop(color: .black.opacity(0.13), radius: 32, x: 0, y: 16))
     }
+    
+    let isPressed: Bool
     
     var body: some View {
         RoundedRectangle(cornerRadius: 56)

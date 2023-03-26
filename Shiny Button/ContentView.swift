@@ -15,32 +15,29 @@ struct ShinyButtonStyle: ButtonStyle {
             .padding(.horizontal, 72)
             .padding(.vertical, 24)
             .background(ButtonBackgroundView(isPressed: configuration.isPressed))
+            .background(
+                VideoPreview()
+                    .brightness(0.1)
+                    .blur(radius: 4)
+                    .saturation(0.3)
+                    .opacity(0.5)
+                    .clipShape(RoundedRectangle(cornerRadius: 56))
+            )
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.easeOut, value: configuration.isPressed)
     }
 }
 
 struct ContentView: View {
-    @State private var size: CGSize = .zero
-    
     var body: some View {
         ZStack {
             Color("backgroundColor")
                 .ignoresSafeArea()
-                
+                	
             Button(action: {}) {
                 Text("Button")
             }
             .buttonStyle(ShinyButtonStyle())
-            .overlay {
-                GeometryReader { proxy in
-                    Color.clear
-                        .onAppear {
-                            size = proxy.size
-                            dump(size)
-                        }
-                }
-            }
         }
     }
 }
